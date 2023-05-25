@@ -9,5 +9,8 @@
         public int TeamID { get; set; }
         public string Bike { get; set; }
         public int Number { get; set; }
+
+        public Country? Country { get; set; }
+        public Team? Team { get; set; }
     }
 }
