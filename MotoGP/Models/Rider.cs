@@ -5,6 +5,14 @@
         public int RiderID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+
+        public string Name
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
         public int CountryID { get; set; }
         public int TeamID { get; set; }
         public string Bike { get; set; }
