@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+
+    ViewData["Title"] = "Menu";
+   string src = "/images/banners/banner" + ViewData["BannerNr"] + ".jpg";
+
+}
+<style>
+    .center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        right: 15%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<header>
+    <img src="@src" />
+    @*<img src=@($"/images/banners/banner{ViewData["BannerNr"]}.jpg")/>*@
+</header>
+
+
+
+<div class="center">
+    <a asp-controller="Info" asp-action="ListRaces"><img src="~/images/banners/races.png" /></a>
+    <a asp-controller="Info" asp-action="ListTeams"><img src="~/images/banners/teams.png"/></a>
+    <a asp-controller="Info" asp-action="ListRiders"><img src="~/images/banners/riders.png" /></a>
+    <a asp-controller="Shop" asp-action="OrderTicket"><img src="~/images/banners/tickets.png" /></a>
+</div>
+
+

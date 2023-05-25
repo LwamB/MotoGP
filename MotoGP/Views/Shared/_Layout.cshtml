@@ -1,0 +1,26 @@
+﻿@{
+    var bannerNo = (int)ViewData["BannerNr"]!;
+    var banners = new List<String>
+    { "bannerRaces.jpg", "bannerRiders.jpg", "bannerTeams.jpg", "bannerTickets.jpg" };
+
+    string src = "/images/banners/" + banners[bannerNo];
+
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - MotoGP</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header><img src="@src" /></header>
+    <h1>@ViewData["Title"]</h1>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
