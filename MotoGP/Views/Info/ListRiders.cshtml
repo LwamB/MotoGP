@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MotoGP.Models.Rider>
+@{
+    ViewData["Title"] = "Riders";
+}
+
+<div class="row m-auto">
+    @foreach (var rider in Model)
+    {
+        <div class="bg-light m-3 col-3 card">
+            <img class="card-img m-2" src="~/images/riders/@(rider.Number).jpg" />
+           <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <img src="~/images/flags/@(rider.CountryID).png" />
+                </div>
+                <h4 class="mx-2">@rider.Number</h4>
+            </div>
+
+            <p>@rider.Name</p>
+        </div>
+    }
+
+</div>
+
+

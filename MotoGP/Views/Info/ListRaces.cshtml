@@ -1,5 +1,21 @@
-﻿@{
+﻿@model IEnumerable<MotoGP.Models.Race>
+@{
     ViewData["Title"] = "Races";
+}
+
+
+@foreach (var group in Model.GroupBy(g => g.Date.Month))
+{
+    <h3>@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(group.Key)</h3>
+    @foreach(var race in group.ToArray())
+    {
+        <div>
+            @Html.DisplayFor(a=>race.Date)
+            <a asp-action="ShowRace" asp-route-id="@race.RaceID">@Html.DisplayFor(a=>race.Name)</a>
+        </div>
+      
+
+    }
 }
 
 <p>

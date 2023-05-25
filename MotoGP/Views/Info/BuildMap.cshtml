@@ -1,11 +1,11 @@
-﻿@{
+﻿@model IEnumerable<MotoGP.Models.Race>
+@{
     ViewData["Title"] = "Races on map";
-    var Races = (List<Race>)ViewData["races"]!;
 }
 <img src="~/images/banners/map.png" usemap="#racesmap"/>
 
 <map name="racesmap">
-    @foreach (var race in Races)
+    @foreach (Race race in Model)
     {
         <a asp-action="ShowRace"  asp-route-id="@race.RaceID">
                 <area shape="circle" coords="@race.X,@race.Y,20"/>
