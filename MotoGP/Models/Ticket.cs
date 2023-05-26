@@ -1,4 +1,6 @@
-﻿namespace MotoGP.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MotoGP.Models
 {
     public class Ticket
     {
@@ -9,6 +11,10 @@
         public int CountryID { get; set; }
         public int RaceID { get; set; }
         public int Number { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true,
+         DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? OrderDate { get; set; }
         public bool Paid { get; set; }
 
