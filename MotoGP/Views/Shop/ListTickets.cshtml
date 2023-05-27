@@ -1,0 +1,77 @@
+﻿@model MotoGP.Models.ViewModels.SelectTicketsViewModel
+@{
+    ViewData["Title"] = "Ordered Tickets";
+    var selectList = (IEnumerable<SelectListItem>)Model.Races;
+}
+
+
+<form asp-action="ListTickets" method="get">
+    <select asp-for="raceID" asp-items="selectList">
+        <option value="0">-- Select a race --</option>
+    </select>
+    <input type="submit" value="Filter"/>
+</form>
+
+@if (Model.TicketList != null)
+{
+    @if(Model.TicketList.Count == 0 )
+    {
+        <p>No tickets ordered for this race yet.</p>
+    }
+    else
+    {
+          <table>
+                <tr>
+                  <th>@(Html.DisplayNameFor(m => Model.TicketList[0].OrderDate))</th>
+                    <th>@(Html.DisplayNameFor(m => Model.TicketList[0].Name))</th>
+
+                    <th>@(Html.DisplayNameFor(m => Model.TicketList[0].Email))</th>
+
+                    <th>@(Html.DisplayNameFor(m => Model.TicketList[0].Address))</th>
+
+                    <th>@(Html.DisplayNameFor(m => Model.TicketList[0].Country))</th>
+
+                    <th>@(Html.DisplayNameFor(m => Model.TicketList[0].Race.Name))</th>
+
+                    <th>@(Html.DisplayNameFor(m => Model.TicketList[0].Number))</th>
+                    <th></th>
+
+                </tr>
+
+            @foreach (var item in Model.TicketList)
+            {
+                        <tr>
+                            <td>@(Html.DisplayFor(m => item.OrderDate))</td>
+                            <td>@(Html.DisplayFor(m => item.Name))</td>
+
+                            <td>@(Html.DisplayFor(m => item.Email))</td>
+
+                            <td>@(Html.DisplayFor(m => item.Address))</td>
+
+                            <td>@(Html.DisplayFor(m => item.Country))</td>
+
+                            <td>@(Html.DisplayFor(m => item.Race.Name))</td>
+
+                            <td>@(Html.DisplayFor(m => item.Number))</td>
+                    <td>
+                        
+                        @if (item.Paid )
+                        {
+                            <b>Paid</b>
+
+                        }
+                        else
+                        {
+                            <a asp-action="EditTicket" asp-route-id="@item.TicketID">Pay</a>
+                        }
+                        
+                    </td>
+
+
+                        </tr>
+            }
+            </table>
+    }
+  
+}
+<a asp-action="ListRaces">Back</a>

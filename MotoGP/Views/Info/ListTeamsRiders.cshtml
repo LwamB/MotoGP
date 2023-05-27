@@ -1,0 +1,38 @@
+﻿@model MotoGP.Models.ViewModels.ListTeamsRidersViewModel
+@{
+    ViewData["Title"] = "Teams & Riders";
+}
+<div class="row m-auto">
+    @foreach (var team in Model.Teams )
+    {
+            <div class="bg-light m-3 col-3 card">
+            <a asp-route-teamID="@team.TeamID"> <img class="card-img m-2" src="~/images/teams/@team.Logo" /></a>
+               
+        </div>
+    }
+    <p>
+        <a asp-controller="Home" asp-action="Menu">Back</a> 
+        
+    </p>
+
+</div>
+
+@if(@Model.Riders != null) {
+        <div class="row m-auto">
+        @foreach (var rider in Model.Riders)
+        {
+                <div class="bg-light m-3 col-3 card">
+                    <img class="card-img m-2" src="~/images/riders/@(rider.Number).jpg" />
+                   <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <img src="~/images/flags/@(rider.CountryID).png" />
+                        </div>
+                        <h4 class="mx-2">@rider.Number</h4>
+                    </div>
+
+                    <p>@rider.Name</p>
+                </div>
+        }
+
+    </div>
+}

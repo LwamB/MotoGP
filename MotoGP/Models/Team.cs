@@ -9,7 +9,7 @@ namespace MotoGP.Models
         public string Name { get; set; }
         public string Logo { get; set; }
 
-        public ICollection<Rider?> Rider { get; set; }
+        public ICollection<Rider?> Riders { get; set; }
 
     }
 }
