@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MotoGP.Models.Team>
+@{
+    ViewData["Title"] = "Teams";
+}
+
+<div class="row m-auto">
+    @foreach (var team in Model)
+    {
+        <div class="bg-light m-3 col-3 card">
+            <img class="card-img m-2" src="~/images/teams/@team.Logo" />
+            <div class="d-flex align-items-center justify-content-between">
+              
+                <P class="mx-2">@team.Name</P>
+            </div>
+            @foreach (var rider in team.Riders)
+            {
+                 <p>@rider.Name</p>
+            }
+           
+        </div>
+    }
+    <p>
+        <a asp-controller="Home" asp-action="Menu">Back</a> |
+        <a asp-action="ListTeamsRiders">Teams and Riders</a>
+    </p>
+    
+</div>
+
+
+

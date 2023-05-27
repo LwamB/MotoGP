@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MotoGP.Data;
 using MotoGP.Models.ViewModels;
 
@@ -61,6 +62,29 @@ namespace MotoGP.Controllers
             selectRacesVM.raceID = raceID;
 
             return View(selectRacesVM);
+        }
+
+        public IActionResult ListTeams()
+        {
+            ViewData["BannerNr"] = 0;
+            var teams = _context.Teams.OrderBy(m => m.Name).Include(m => m.Riders).ToList();
+            return View(teams);
+
+        }
+
+        public IActionResult ListTeamsRiders(int teamID = 0)
+        {
+            ViewData["BannerNr"] = 0;
+            var listTeamsRidersVM = new ListTeamsRidersViewModel();
+            listTeamsRidersVM.Teams = _context.Teams.OrderBy(m => m.Name).ToList();
+
+            if (teamID != 0)
+            {
+                listTeamsRidersVM.Riders = _context.Riders.OrderBy(m => m.FirstName).Where(m => m.TeamID == teamID).ToList();
+
+            }
+            listTeamsRidersVM.teamID = teamID;
+            return View(listTeamsRidersVM);
         }
     }
 }

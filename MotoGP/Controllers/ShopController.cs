@@ -77,24 +77,18 @@ namespace MotoGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditTicket(int id, [Bind("Paid", "Name", "Email", "Address", "CountryID", "RaceID", "Number")] Ticket ticket)
+        public IActionResult EditTicket(int id, [Bind("TicketID, Paid")] Ticket ticket)
         {
             ViewData["BannerNr"] = 3;
             ticket.Paid = true;
-            /*   ticket.Paid = true;
-               ticket.Name = "Diana";
-               ticket.Email = "Lwam@gmail.com";
-               ticket.CountryID = 1;
-               ticket.RaceID = 0;
-               ticket.Number = 1000;
-   */
 
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(ticket);
+                    _context.Tickets.Attach(ticket);
+                    _context.Entry(ticket).Property(m => m.Paid).IsModified = true;
                     _context.SaveChanges();
                 }
 
